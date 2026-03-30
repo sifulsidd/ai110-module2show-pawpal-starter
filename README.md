@@ -41,3 +41,19 @@ pip install -r requirements.txt
 5. Add tests to verify key behaviors.
 6. Connect your logic to the Streamlit UI in `app.py`.
 7. Refine UML so it matches what you actually built.
+
+## Testing PawPal+
+USE COMMAND:
+```
+pytest 
+```
+
+My tests cover:
+1. Ensuring mark_complete marks a task as completed
+2. Making sure tests are getting added
+3. Verifying that the tasks get sort based on the time they provide 
+4. Testing that after completing a task the recurs daily, it adds a new task 
+5. If there are conflicts, it detects it
+
+Currently I would give my system 3 stars. It is implementing everything correctly, but there could be more additions that make it complete. 
+
