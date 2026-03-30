@@ -3,6 +3,8 @@ classDiagram
     class Task {
         +String description
         +int duration
+        +String frequency
+        +bool completed
     }
 
     class Owner {
@@ -15,9 +17,11 @@ classDiagram
 
     class Pet {
         +String name
-        +String ownerName
+        +int age
+        +Owner owner
+        +Task[] tasks
     }
 
     Owner "1" *-- "0..*" Pet : owns
-    Owner "0..*" --> "0..*" Task : selects
+    Pet "1" *-- "0..*" Task : has
 ```
