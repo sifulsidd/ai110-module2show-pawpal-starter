@@ -80,9 +80,12 @@ Currently I would give my system 3 stars. It is implementing everything correctl
 
 ## 📸 Demo
 
-<a href="streamlitapp.png" target="_blank">
-  <img src='streamlitapp.png' alt='PawPal+ demo 1'>
+<a href="images/streamlitapp.png" target="_blank">
+  <img src='images/streamlitapp.png' alt='PawPal+ demo 1'>
 </a>
-<a href="streamlitapp1.png" target="_blank">
-  <img src='streamlitapp1.png' alt='PawPal+ demo 2'>
+<a href="images/streamlitapp1.png" target="_blank">
+  <img src='images/streamlitapp1.png' alt='PawPal+ demo 2'>
+</a>
+<a href="images/uml-final.png" target="_blank">
+  <img src='images/uml-final.png' alt='UML Final Diagram'>
 </a>
