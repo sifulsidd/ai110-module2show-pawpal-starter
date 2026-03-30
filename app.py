@@ -78,13 +78,16 @@ st.markdown("### Add Task")
 st.caption("Assign a task to one of the owner's pets.")
 
 # Task inputs matching the Task dataclass fields
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 with col1:
     task_description = st.text_input("Task description", value="Morning walk")
     task_time = st.text_input("Time", value="08:00 AM")
 with col2:
     task_duration = st.number_input("Duration (minutes)", min_value=1, max_value=240, value=20)
     task_frequency = st.selectbox("Frequency", ["daily", "weekly", "monthly"])
+# ADDED: col3 holds the priority selectbox so the user can choose low, medium, or high when adding a task
+with col3:
+    task_priority = st.selectbox("Priority", ["low", "medium", "high"], index=1)
 
 # ADDED: Uses owner.schedule_task() which calls pet.add_task() from pawpal_system.py.
 # Requires an owner to be set in session state first.
@@ -101,6 +104,8 @@ if st.button("Add task"):
             duration=task_duration,
             frequency=task_frequency,
             time=task_time,
+            # ADDED: passes the selected priority from the UI into the Task object
+            priority=task_priority,
         )
         # Calls pet.add_task() internally via Owner.schedule_task()
         st.session_state.owner.schedule_task(pet, task)
@@ -111,7 +116,8 @@ all_tasks = []
 if "owner" in st.session_state:
     for pet in st.session_state.owner.pets:
         for task in pet.tasks:
-            all_tasks.append({"Pet": pet.name, "Task": task.description, "Time": task.time, "Duration": task.duration, "Frequency": task.frequency})
+            # ADDED: "Priority" column included in the tasks table to display each task's priority level
+            all_tasks.append({"Pet": pet.name, "Task": task.description, "Time": task.time, "Duration": task.duration, "Frequency": task.frequency, "Priority": task.priority})
 
 if all_tasks:
     st.write("Current tasks:")

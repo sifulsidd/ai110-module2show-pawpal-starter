@@ -8,6 +8,8 @@ class Task:
     duration: int
     frequency: str
     time: str
+    # ADDED: priority field to indicate task importance — "low", "medium", or "high" (defaults to "medium")
+    priority: str = "medium"
     completed: bool = False
 
     def mark_complete(self):
@@ -17,7 +19,8 @@ class Task:
     def __str__(self) -> str:
         """Return a formatted string summary of the task."""
         status = "Done" if self.completed else "Pending"
-        return f"[{status}] {self.description} at {self.time} ({self.duration} mins, {self.frequency})"
+        # ADDED: priority label included in the string output so it appears when tasks are printed
+        return f"[{status}] [{self.priority.upper()}] {self.description} at {self.time} ({self.duration} mins, {self.frequency})"
 
 
 @dataclass

@@ -14,13 +14,15 @@ def main():
     owner.add_pet(luna)
 
     # Assign tasks to Buddy
-    owner.schedule_task(buddy, Task(description="Morning walk", duration=30, frequency="daily", time="07:00 AM"))
-    owner.schedule_task(buddy, Task(description="Feed breakfast", duration=10, frequency="daily", time="08:00 AM"))
+    # ADDED: priority argument on each Task to reflect how urgent the task is
+    owner.schedule_task(buddy, Task(description="Morning walk", duration=30, frequency="daily", time="07:00 AM", priority="high"))
+    owner.schedule_task(buddy, Task(description="Feed breakfast", duration=10, frequency="daily", time="08:00 AM", priority="high"))
 
     # Assign tasks to Luna
-    owner.schedule_task(luna, Task(description="Vet checkup", duration=60, frequency="monthly", time="10:00 AM"))
-    owner.schedule_task(luna, Task(description="Evening walk", duration=20, frequency="daily", time="06:00 PM"))
-    owner.schedule_task(luna, Task(description="Bath time", duration=45, frequency="weekly", time="02:00 PM"))
+    # ADDED: priority argument on each Task to reflect how urgent the task is
+    owner.schedule_task(luna, Task(description="Vet checkup", duration=60, frequency="monthly", time="10:00 AM", priority="high"))
+    owner.schedule_task(luna, Task(description="Evening walk", duration=20, frequency="daily", time="06:00 PM", priority="medium"))
+    owner.schedule_task(luna, Task(description="Bath time", duration=45, frequency="weekly", time="02:00 PM", priority="low"))
 
     # Use Scheduler to retrieve and display tasks
     scheduler = Scheduler()
