@@ -64,12 +64,17 @@ I verified it was working and evaluated it by running the mermaid.js code, I had
 **a. What you tested**
 
 - What behaviors did you test?
+I tested whether a task status gets updated, whether a task gets added, sorting tasks by their time, testing if a daily task that has been completed gets added again, and test conflict detection with multiple tasks at the same time. 
 - Why were these tests important?
+These tasks verify the core funcitonalty of the app. If all these tasks work as intended then we can grow from here. Essentially these basics are the building blocks to implement more complex methods. 
 
 **b. Confidence**
 
 - How confident are you that your scheduler works correctly?
+I am very confident it is working as anticipated based off of times. 
+
 - What edge cases would you test next if you had more time?
+I think an edge case I haven't checked is if we have an upcoming task on a different day, whether it conflicts with the current task or not if it is a repeating one. 
 
 ---
 
@@ -79,10 +84,14 @@ I verified it was working and evaluated it by running the mermaid.js code, I had
 
 - What part of this project are you most satisfied with?
 
+I am very satisfied with the app.py logic. I felt as if my AI needed the least input on that for correcting errors.
+
 **b. What you would improve**
 
 - If you had another iteration, what would you improve or redesign?
+I would redesign my pawpal_system. I think there are some edge cases I would reimplement or implement better. 
 
 **c. Key takeaway**
 
 - What is one important thing you learned about designing systems or working with AI on this project?
+When designing large systems, AI tends to get out of whack. For me that occurred in the beginning when I was working on my UML diagram. As I created more and more of the project, AI knew how to implement changes in one file to other files. It worked effectively. 
