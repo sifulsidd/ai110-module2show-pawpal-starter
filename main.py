@@ -23,6 +23,8 @@ def main():
     owner.schedule_task(luna, Task(description="Vet checkup", duration=60, frequency="monthly", time="10:00 AM", priority="high"))
     owner.schedule_task(luna, Task(description="Evening walk", duration=20, frequency="daily", time="06:00 PM", priority="medium"))
     owner.schedule_task(luna, Task(description="Bath time", duration=45, frequency="weekly", time="02:00 PM", priority="low"))
+    # Intentional conflict: overlaps Buddy's "Morning walk" (07:00 AM, 30 mins)
+    owner.schedule_task(luna, Task(description="Morning grooming", duration=15, frequency="daily", time="07:15 AM", priority="medium"))
 
     # Use Scheduler to retrieve and display tasks
     scheduler = Scheduler()
@@ -40,6 +42,17 @@ def main():
     print("\n" + "=" * 40)
     print(f"Total tasks:   {len(scheduler.get_all_tasks(owner))}")
     print(f"Pending tasks: {len(scheduler.get_pending_tasks(owner))}")
+    print("=" * 40)
+
+    print("\n" + "=" * 40)
+    print("      CONFLICT DETECTION")
+    print("=" * 40)
+    conflicts = scheduler.detect_conflicts(owner)
+    if conflicts:
+        for warning in conflicts:
+            print(f"\n{warning}")
+    else:
+        print("\nNo scheduling conflicts found.")
     print("=" * 40)
 
     # Demonstrate mark_complete() auto-scheduling the next occurrence

@@ -1,6 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from datetime import datetime, date, timedelta
+from itertools import combinations
 
 
 @dataclass
@@ -116,3 +117,38 @@ class Scheduler:
     def filter_by_status(self, tasks: list[Task], completed: bool) -> list[Task]:
         """Return tasks matching the given completion status."""
         return [task for task in tasks if task.completed == completed]
+
+    def detect_conflicts(self, owner: Owner) -> list[str]:
+        """Check all tasks across all pets for scheduling overlaps.
+
+        Two tasks conflict when their time windows overlap:
+            start_a < end_b  and  start_b < end_a
+
+        Returns a list of human-readable warning strings, one per conflict.
+        Returns an empty list when no conflicts are found.
+        """
+        # Build a flat list of (pet_name, task) pairs so each task keeps its owner label
+        labeled = [
+            (pet.name, task)
+            for pet in owner.pets
+            for task in pet.tasks
+        ]
+
+        warnings = []
+        for (pet_a, task_a), (pet_b, task_b) in combinations(labeled, 2):
+            try:
+                start_a = datetime.strptime(task_a.time, "%I:%M %p")
+                start_b = datetime.strptime(task_b.time, "%I:%M %p")
+            except ValueError:
+                continue  # skip tasks with unparseable times rather than crashing
+
+            end_a = start_a + timedelta(minutes=task_a.duration)
+            end_b = start_b + timedelta(minutes=task_b.duration)
+
+            if start_a < end_b and start_b < end_a:
+                warnings.append(
+                    f"WARNING: '{task_a.description}' ({pet_a}, {task_a.time}, {task_a.duration} mins) "
+                    f"overlaps with '{task_b.description}' ({pet_b}, {task_b.time}, {task_b.duration} mins)."
+                )
+
+        return warnings

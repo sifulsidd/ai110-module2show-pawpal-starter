@@ -24,7 +24,7 @@ I changed the redundancy by changing --> to *-- on the Owner-Pet relationship to
 **a. Constraints and priorities**
 
 - What constraints does your scheduler consider (for example: time, priority, preferences)?
-My scheduler currently checks the time of the task.
+My scheduler currently checks the time of the task and duration.
 
 - How did you decide which constraints mattered most?
 I believe starting off with the time is the most efficient way, because from there we can figure out what else needs to be done. It's a basis for things that are to happen in the future. 
@@ -32,7 +32,10 @@ I believe starting off with the time is the most efficient way, because from the
 **b. Tradeoffs**
 
 - Describe one tradeoff your scheduler makes.
+One tradeoff that is currently happening is if there are tasks in different days, my scheduler isn't identifying that right now. 
+
 - Why is that tradeoff reasonable for this scenario?
+Currently, it is only identifying the times and I believe this is okay for now because we have to figure out if the timing is correct first before we move onto add separate days. 
 
 ---
 
