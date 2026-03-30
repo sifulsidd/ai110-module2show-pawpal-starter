@@ -5,12 +5,17 @@
 **a. Initial design**
 
 - Briefly describe your initial UML design.
+The UML diagram will have there components, Task, Owner and Pet. A pet is assigned to one owner. An owner can select a task. A task will consist of a string of what needs to be done and contain an integer stating how long that task takes. The pet will contain the name for the pet and the owner's name. The owner will contain a name and an array of pets that he/she owns.
+
 - What classes did you include, and what responsibilities did you assign to each?
+I included the Owner, Pet and Task classes. A task will consist of a string of what needs to be done and contain an integer stating how long that task takes. The pet will contain the name for the pet and the owner's name. The owner will contain a name and an array of pets that he/she owns. 
 
 **b. Design changes**
 
 - Did your design change during implementation?
+Yes, based on what I described there was a redundant, conflicting arrow between Owner and Pet.
 - If yes, describe at least one change and why you made it.
+I changed the redundancy by changing --> to *-- on the Owner-Pet relationship to show that pets are a part of an owner (All pets need an owner). 
 
 ---
 
@@ -19,6 +24,7 @@
 **a. Constraints and priorities**
 
 - What constraints does your scheduler consider (for example: time, priority, preferences)?
+
 - How did you decide which constraints mattered most?
 
 **b. Tradeoffs**

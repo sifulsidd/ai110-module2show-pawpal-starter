@@ -8,7 +8,9 @@ classDiagram
     class Owner {
         +String name
         +Pet[] pets
-        +selectTask(task: Task)
+        +addPet(pet: Pet)
+        +scheduleTask(task: Task)
+        +viewAllTasks() Task[]
     }
 
     class Pet {
