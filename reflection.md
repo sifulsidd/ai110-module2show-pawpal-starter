@@ -24,8 +24,10 @@ I changed the redundancy by changing --> to *-- on the Owner-Pet relationship to
 **a. Constraints and priorities**
 
 - What constraints does your scheduler consider (for example: time, priority, preferences)?
+My scheduler currently checks the time of the task.
 
 - How did you decide which constraints mattered most?
+I believe starting off with the time is the most efficient way, because from there we can figure out what else needs to be done. It's a basis for things that are to happen in the future. 
 
 **b. Tradeoffs**
 
@@ -39,12 +41,18 @@ I changed the redundancy by changing --> to *-- on the Owner-Pet relationship to
 **a. How you used AI**
 
 - How did you use AI tools during this project (for example: design brainstorming, debugging, refactoring)?
+I prompted Claude in order to brainstorm how to do the UML-diagram and based on the diagram I asked it for assistance in order to create the classes that were necessary.
+
 - What kinds of prompts or questions were most helpful?
+I believe the prompts that were the most benefical were the ones that contained the most directions. When Claude knew exactly what to do it was easier for it to solve the issues I was having. Also it didn't make any judgements and mess with the workflow I currently have. 
 
 **b. Judgment and verification**
 
 - Describe one moment where you did not accept an AI suggestion as-is.
+There was a point where my UML-diagram wasn't working as intended. It was showing a redundant relationship between my Owner and Pet. As a result, I had to ask Claude in order to help me figure it out further and debug the issue.
+
 - How did you evaluate or verify what the AI suggested?
+I verified it was working and evaluated it by running the mermaid.js code, I had to ensure everything was working as intended. 
 
 ---
 
