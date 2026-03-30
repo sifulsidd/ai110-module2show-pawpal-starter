@@ -22,6 +22,26 @@ Your final app should:
 - Display the plan clearly (and ideally explain the reasoning)
 - Include tests for the most important scheduling behaviors
 
+## Features
+
+### Sorting by Time
+`Scheduler.sort_by_time()` parses each task's time string (e.g. `"08:00 AM"`) into a `datetime` object and returns all tasks in chronological order. This powers both the task table display and the generated schedule view.
+
+### Conflict Detection
+`Scheduler.detect_conflicts()` checks every pair of tasks across all pets using a standard interval overlap formula: two tasks conflict when `start_a < end_b` and `start_b < end_a`. Each task's end time is computed by adding its `duration` (in minutes) to its start time. Conflicts are returned as human-readable warning strings.
+
+### Daily and Weekly Recurrence
+`Task.mark_complete()` marks a task as done and automatically creates the next occurrence. Daily tasks get a new `Task` scheduled for the next day (`date + 1 day`); weekly tasks recur 7 days later (`date + 7 days`). Monthly tasks return `None` — no auto-scheduling.
+
+### Priority Levels
+Each `Task` carries a `priority` field (`"low"`, `"medium"`, or `"high"`, defaulting to `"medium"`). Priority is displayed in the UI with color-coded icons (🔴 high, 🟡 medium, 🟢 low) and is preserved when a recurring task is auto-created by `mark_complete()`.
+
+### Filtering by Status and Frequency
+`Scheduler.filter_by_status()` returns only completed or only pending tasks from any list. `Scheduler.get_tasks_by_frequency()` filters tasks across all pets to a specific frequency (`"daily"`, `"weekly"`, or `"monthly"`). Both are available as standalone utilities on the `Scheduler`.
+
+### Per-Pet Task Grouping
+`Scheduler.get_tasks_by_pet()` returns a dictionary mapping each pet's name to its task list, making it easy to view or process tasks on a per-animal basis.
+
 ## Getting started
 
 ### Setup
@@ -57,3 +77,12 @@ My tests cover:
 
 Currently I would give my system 3 stars. It is implementing everything correctly, but there could be more additions that make it complete. 
 
+
+## 📸 Demo
+
+<a href="/course_images/ai110/streamlitapp.png" target="_blank">
+  <img src='/course_images/ai110/streamlitapp.png' alt='PawPal+ demo 1'>
+</a>
+<a href="/course_images/ai110/streamlitapp1.png" target="_blank">
+  <img src='/course_images/ai110/streamlitapp1.png' alt='PawPal+ demo 2'>
+</a>
