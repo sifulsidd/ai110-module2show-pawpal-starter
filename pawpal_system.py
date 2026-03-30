@@ -1,5 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
+from datetime import datetime, date, timedelta
 
 
 @dataclass
@@ -11,10 +12,35 @@ class Task:
     # ADDED: priority field to indicate task importance — "low", "medium", or "high" (defaults to "medium")
     priority: str = "medium"
     completed: bool = False
+    date: date = field(default_factory=date.today)
 
-    def mark_complete(self):
-        """Mark this task as completed."""
+    def mark_complete(self) -> "Task | None":
+        """Mark this task as completed.
+
+        For daily and weekly tasks, returns a new Task scheduled for the next
+        occurrence (today + 1 day or today + 7 days). Returns None for monthly
+        tasks or any other frequency.
+        """
         self.completed = True
+        if self.frequency == "daily":
+            return Task(
+                description=self.description,
+                duration=self.duration,
+                frequency=self.frequency,
+                time=self.time,
+                priority=self.priority,
+                date=self.date + timedelta(days=1),
+            )
+        elif self.frequency == "weekly":
+            return Task(
+                description=self.description,
+                duration=self.duration,
+                frequency=self.frequency,
+                time=self.time,
+                priority=self.priority,
+                date=self.date + timedelta(weeks=1),
+            )
+        return None
 
     def __str__(self) -> str:
         """Return a formatted string summary of the task."""
@@ -82,3 +108,11 @@ class Scheduler:
     def get_tasks_by_frequency(self, owner: Owner, frequency: str) -> list[Task]:
         """Return all tasks matching the given frequency across all pets."""
         return [task for task in self.get_all_tasks(owner) if task.frequency == frequency]
+
+    def sort_by_time(self, tasks: list[Task]) -> list[Task]:
+        """Return tasks sorted chronologically by their time attribute."""
+        return sorted(tasks, key=lambda t: datetime.strptime(t.time, "%I:%M %p"))
+
+    def filter_by_status(self, tasks: list[Task], completed: bool) -> list[Task]:
+        """Return tasks matching the given completion status."""
+        return [task for task in tasks if task.completed == completed]
