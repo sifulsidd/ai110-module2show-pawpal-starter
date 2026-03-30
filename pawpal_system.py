@@ -7,6 +7,7 @@ class Task:
     description: str
     duration: int
     frequency: str
+    time: str
     completed: bool = False
 
     def mark_complete(self):
@@ -14,7 +15,7 @@ class Task:
 
     def __str__(self) -> str:
         status = "Done" if self.completed else "Pending"
-        return f"[{status}] {self.description} ({self.duration} mins, {self.frequency})"
+        return f"[{status}] {self.description} at {self.time} ({self.duration} mins, {self.frequency})"
 
 
 @dataclass
