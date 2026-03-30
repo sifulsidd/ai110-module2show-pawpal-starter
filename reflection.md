@@ -15,7 +15,7 @@ I included the Owner, Pet and Task classes. A task will consist of a string of w
 - Did your design change during implementation?
 Yes, based on what I described there was a redundant, conflicting arrow between Owner and Pet.
 - If yes, describe at least one change and why you made it.
-I changed the redundancy by changing --> to *-- on the Owner-Pet relationship to show that pets are a part of an owner (All pets need an owner). 
+I changed the redundancy by changing --> to *-- on the Owner-Pet relationship to show that pets are a part of an owner (All pets need an owner). Instead of just the owner name being in the Pet, I included a reference to the Owner class and the name being found that way. 
 
 ---
 
