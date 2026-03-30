@@ -42,6 +42,37 @@ def main():
     print(f"Pending tasks: {len(scheduler.get_pending_tasks(owner))}")
     print("=" * 40)
 
+    # Demonstrate mark_complete() auto-scheduling the next occurrence
+    print("\n" + "=" * 40)
+    print("     COMPLETING A TASK DEMO")
+    print("=" * 40)
+
+    morning_walk = buddy.tasks[0]
+    print(f"\nCompleting: {morning_walk}")
+    next_task = morning_walk.mark_complete()
+    if next_task:
+        buddy.add_task(next_task)
+        print(f"Next occurrence scheduled: {next_task.description} on {next_task.date}")
+
+    bath_time = luna.tasks[2]
+    print(f"\nCompleting: {bath_time}")
+    next_task = bath_time.mark_complete()
+    if next_task:
+        luna.add_task(next_task)
+        print(f"Next occurrence scheduled: {next_task.description} on {next_task.date}")
+
+    vet_checkup = luna.tasks[0]
+    print(f"\nCompleting: {vet_checkup}")
+    next_task = vet_checkup.mark_complete()
+    if next_task:
+        luna.add_task(next_task)
+    else:
+        print(f"Monthly task — no auto-scheduling. Book next appointment manually.")
+
+    print("\n" + "=" * 40)
+    print(f"Pending tasks after completions: {len(scheduler.get_pending_tasks(owner))}")
+    print("=" * 40)
+
 
 if __name__ == "__main__":
     main()
